@@ -1,0 +1,15 @@
+python manage.py shell
+from task1.models import Buyer
+Buyer.objects.create(name='Tom', balance=357.05, age=37)
+Buyer.objects.create(name='Adam', balance=1.5, age=12)
+Buyer.objects.create(name='Cookie', balance=1230.15, age=60)
+from task1.models import Game
+Game.objects.create(title='Dark Souls', cost=300, size=8, description='Dark fantasy, Action/RPG', age_limited=True)
+Game.objects.create(title='Resident Evil 2', cost=275, size=7, description='Survival horror', age_limited=True)
+Game.objects.create(title='Stardew Valley', cost=80, size=1.5, description='Farm life simulation, Role-playing', age_limited=False)
+first_buyer=Buyer.objects.get(id=1)
+second_buyer=Buyer.objects.get(id=2)
+third_buyer=Buyer.objects.get(id=3)
+Game.objects.get(id=1).buyer.set((first_buyer, third_buyer))
+Game.objects.get(id=2).buyer.set((first_buyer, third_buyer))
+Game.objects.get(id=3).buyer.set((second_buyer, third_buyer))
